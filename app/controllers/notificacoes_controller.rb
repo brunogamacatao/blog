@@ -17,6 +17,7 @@ class NotificacoesController < ApplicationController
     
     if notification.approved?
       matricula.estado = :confirmada
+      MatriculaMailer.confirmacao(matricula).deliver
     elsif notification.cancelled? || notification.returned?
       matricula.estado = :cancelada
     end

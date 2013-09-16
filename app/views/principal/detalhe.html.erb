@@ -1,4 +1,4 @@
-<div class="large-9 columns" role="content">
+<div class="large-8 columns panel" role="content">
   <h3><%= @curso.nome %></h3>
 
   <div class="row">
@@ -9,22 +9,48 @@
       <p><%= @curso.descricao %></p>
     </div>
   </div>
-  <div data-alert="" class="alert-box success round">
-    Valor: <%= em_reais(@curso.preco) %>
-  </div>
-  
   <hr/>
-  
-  <h4>Ementa:</h4>
-  <p><%= @curso.ementa.html_safe %></p>
+  <div class="row">
+    <div class="large-9 columns">
+      <div data-alert="" class="alert-box success round">
+        Valor: <%= em_reais(@curso.preco) %>
+      </div>
+    </div>
+    <div class="large-3 columns">
+      <% if user_signed_in? %>
+        <% if @curso.matriculado?(current_user) %>
+          <%= link_to(url_for(@curso), :class => "button round small success") do %>
+            <i class="foundicon-address-book"></i>&nbsp;Entrar
+          <% end %>
+        <% else %>
+          <% if @curso.inicio_previsto %>
+            <%= form_for(Matricula.new) do |f| %>
+              <%= f.hidden_field :curso_id, :value => @curso.id %>
+              <%= button_tag(type: 'submit', class: "button round small") do %>
+                <i class="foundicon-cart"></i>&nbsp;Matricule-se</a>&nbsp;
+              <% end %>
+            <% end %>
+          <% else %>
+            <div data-alert="" class="alert-box">
+              Este curso ainda não tem início previsto.
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if curso.inicio_previsto %>
+          <%= link_to(user_omniauth_authorize_path(:facebook), :class => "button round small") do %>
+            <i class="foundicon-page"></i>&nbsp;Registre-se
+          <% end %>
+        <% else %>
+          <div data-alert="" class="alert-box">
+            Este curso ainda não tem início previsto.
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<!-- Sidebar -->
-<aside class="large-3 columns panel">
-  <h5>Cursos</h5>
-  <ul class="side-nav">
-    <% Curso.all.each do |curso| %>
-      <li><a href="#"><%= curso.nome %></a></li>
-    <% end %>
-  </ul>
+<aside class="large-4 columns panel">
+  <h3>Ementa</h3>
+  <p><%= @curso.ementa.html_safe %></p>
 </aside>
-<!-- End Sidebar -->
