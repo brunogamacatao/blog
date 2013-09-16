@@ -33,7 +33,7 @@
   <h5>Cursos</h5>
   <ul class="side-nav">
     <% Curso.all.each do |curso| %>
-      <li><a href="#"><%= curso.nome %></a></li>
+      <li><%= link_to curso.nome, detalhe_curso_path(curso) %></li>
     <% end %>
   </ul>
 </aside>

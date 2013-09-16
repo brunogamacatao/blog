@@ -30,12 +30,9 @@
                 <% end %>
               <% end %>
             <% else %>
-            
               <%= link_to(detalhe_curso_path(curso), class: "button round small") do %>
                 <i class="foundicon-plus"></i>&nbsp;Ver Mais
               <% end %>
-            
-            
             <% end %>
           <% end %>
         <% else %>
@@ -60,7 +57,7 @@
   <h5>Cursos</h5>
   <ul class="side-nav">
     <% Curso.all.each do |curso| %>
-      <li><a href="#"><%= curso.nome %></a></li>
+      <li><%= link_to curso.nome, detalhe_curso_path(curso) %></li>
     <% end %>
   </ul>
 </aside>
