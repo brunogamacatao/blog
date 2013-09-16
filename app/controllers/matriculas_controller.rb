@@ -1,4 +1,6 @@
 class MatriculasController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     @matricula        = Matricula.new(params[:matricula])
     @matricula.user   = current_user

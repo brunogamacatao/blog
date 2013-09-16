@@ -28,7 +28,13 @@
         <div class="large-12 columns">
           <div class="nav-bar right">
            <ul class="button-group">
-             <li><%= link_to "Entrar / Registrar", user_omniauth_authorize_path(:facebook) %></li>
+             <% if user_signed_in? %>
+               <li>Oi <%= facebook.name %></li>
+               <li><%= link_to "Meus Cursos", matriculas_path %></li>
+               <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+             <% else %>
+               <li><%= link_to "Entrar / Registrar", user_omniauth_authorize_path(:facebook) %></li>
+             <% end %>
             </ul>
           </div>
           <h1>Bruno Catão</h1>

@@ -1,6 +1,10 @@
 class NotificacoesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
+  def index
+    @notification_code = params[:id_pagseguro]
+  end
+  
   def create
     return unless request.post?
     
