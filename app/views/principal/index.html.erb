@@ -13,8 +13,13 @@
         </div>
       </div>
       <p>
-        <a href="#" class="button round small"><i class="foundicon-cart"></i>&nbsp;Adicionar ao Carrinho</a>&nbsp;
-        <a href="#" class="button round small"><i class="foundicon-plus"></i>&nbsp;Ver Mais</a>
+        <%= form_for(Matricula.new) do |f| %>
+          <%= f.hidden_field :curso_id, :value => curso.id %>
+          <%= button_tag(type: 'submit', class: "button round small") do %>
+            <i class="foundicon-cart"></i>&nbsp;Matricule-se</a>&nbsp;
+          <% end %>
+          <a href="#" class="button round small"><i class="foundicon-plus"></i>&nbsp;Ver Mais</a>
+        <% end %>
       </p>
     </article>
     <hr/>
