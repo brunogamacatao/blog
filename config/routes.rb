@@ -1,4 +1,8 @@
 Blog::Application.routes.draw do
+  devise_for :users, path_names: {sign_in: 'entrar', sign_out: 'sair'},
+                     controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

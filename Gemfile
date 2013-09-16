@@ -40,10 +40,12 @@ gem 'jquery-rails'
 
 gem 'unicorn'
 gem 'capistrano'
-gem 'activeadmin'
 gem "rmagick"
 gem "carrierwave"
 gem 'yaml_db'
+gem 'devise'
+gem 'omniauth-facebook'
+gem 'activeadmin'
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do
