@@ -43,6 +43,7 @@ gem 'capistrano'
 gem 'activeadmin'
 gem "rmagick"
 gem "carrierwave"
+gem 'yaml_db'
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do
