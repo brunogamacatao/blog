@@ -1,5 +1,5 @@
 class PrincipalController < ApplicationController
   def index
-    @cursos = Curso.all
+    @cursos = Curso.order("proxima_turma, id")
   end
 end
