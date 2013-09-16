@@ -40,6 +40,9 @@ gem 'jquery-rails'
 
 gem 'unicorn'
 gem 'capistrano'
+gem 'activeadmin'
+gem "rmagick"
+gem "carrierwave"
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do

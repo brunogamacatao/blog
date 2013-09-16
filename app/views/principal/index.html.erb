@@ -1,18 +1,31 @@
-<article>
-  <h3><a href="#">Blog Post Title</a></h3>
-  <h6>Written by <a href="#">John Smith</a> on August 12, 2012.</h6>
+<!-- Main Blog Content -->
+<div class="large-9 columns" role="content">
+  <% @cursos.each do |curso| %>
+    <article>
+      <h3><a href="#"><%= curso.nome %></a></h3>
 
-  <div class="row">
-    <div class="large-6 columns">
-      <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa.</p>
-      <p>Boudin aliqua adipisicing rump corned beef. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-    </div>
-    <div class="large-6 columns">
-      <img src="http://placehold.it/400x240&text=[img]" />
-    </div>
-  </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <p><%= curso.descricao %></p>
+        </div>
+        <div class="large-6 columns">
+          <%= image_tag curso.imagem_url(:thumb) if curso.imagem? %>
+        </div>
+      </div>
+      <p><a href="#" class="button round">Adicionar ao Carrinho</a>&nbsp;<a href="#" class="button round">Ver Mais</a></p>
+    </article>
+    <hr/>
+  <% end %>
+</div>
+<!-- End Main Content -->
 
-  <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-
-  <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-</article>
+<!-- Sidebar -->
+<aside class="large-3 columns">
+  <h5>Cursos</h5>
+  <ul class="side-nav">
+    <% Curso.all.each do |curso| %>
+      <li><a href="#"><%= curso.nome %></a></li>
+    <% end %>
+  </ul>
+</aside>
+<!-- End Sidebar -->
