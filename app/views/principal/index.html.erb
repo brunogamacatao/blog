@@ -13,12 +13,40 @@
         </div>
       </div>
       <p>
-        <%= form_for(Matricula.new) do |f| %>
-          <%= f.hidden_field :curso_id, :value => curso.id %>
-          <%= button_tag(type: 'submit', class: "button round small") do %>
-            <i class="foundicon-cart"></i>&nbsp;Matricule-se</a>&nbsp;
+        <% if user_signed_in? %>
+          <% if curso.matriculado?(current_user) %>
+            <%= link_to(url_for(curso), :class => "button round small success") do %>
+              <i class="foundicon-address-book"></i>&nbsp;Entrar
+            <% end %>
+          <% else %>
+            <% if curso.inicio_previsto %>
+              <%= form_for(Matricula.new) do |f| %>
+                <%= f.hidden_field :curso_id, :value => curso.id %>
+                <%= button_tag(type: 'submit', class: "button round small") do %>
+                  <i class="foundicon-cart"></i>&nbsp;Matricule-se</a>&nbsp;
+                <% end %>
+                <%= link_to(detalhe_curso_path(curso), class: "button round small") do %>
+                  <i class="foundicon-plus"></i>&nbsp;Ver Mais
+                <% end %>
+              <% end %>
+            <% else %>
+            
+              <%= link_to(detalhe_curso_path(curso), class: "button round small") do %>
+                <i class="foundicon-plus"></i>&nbsp;Ver Mais
+              <% end %>
+            
+            
+            <% end %>
           <% end %>
-          <a href="#" class="button round small"><i class="foundicon-plus"></i>&nbsp;Ver Mais</a>
+        <% else %>
+          <% if curso.inicio_previsto %>
+            <%= link_to(user_omniauth_authorize_path(:facebook), :class => "button round small") do %>
+              <i class="foundicon-page"></i>&nbsp;Registre-se
+            <% end %>
+          <% end %>
+          <%= link_to(detalhe_curso_path(curso), class: "button round small") do %>
+            <i class="foundicon-plus"></i>&nbsp;Ver Mais
+          <% end %>
         <% end %>
       </p>
     </article>

@@ -14,4 +14,9 @@ Blog::Application.routes.draw do
   # pag_seguro routes
   resources :matriculas
   resources :notificacoes
+  
+  # general routes
+  resources :cursos
+  get "principal/sobre", as: :sobre
+  get "/detalhes/:id", to: 'principal#detalhe', as: :detalhe_curso
 end

@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   validates_presence_of :username
-
+  
+  has_many :matriculas
   
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
@@ -43,4 +44,8 @@ class User < ActiveRecord::Base
       super
     end
   end  
+  
+  def to_s
+    username
+  end
 end

@@ -5,6 +5,7 @@ ActiveAdmin.register Curso do
       f.input :imagem, :as => :file
       f.input :preco
       f.input :descricao
+      f.input :ementa, as: :wysihtml5
       f.input :inicio_previsto
       f.input :proxima_turma
     end
