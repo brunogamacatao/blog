@@ -5,7 +5,8 @@ class Curso < ActiveRecord::Base
   friendly_id :nome, use: :slugged
   mount_uploader :imagem, ImagemUploader
   
-  attr_accessible :descricao, :imagem, :inicio_previsto, :nome, :proxima_turma, :preco, :ementa
+  attr_accessible :descricao, :imagem, :inicio_previsto, :nome, :proxima_turma
+  attr_accessible :preco, :ementa, :tem_promocao, :preco_promocional
   
   has_many :matriculas
   

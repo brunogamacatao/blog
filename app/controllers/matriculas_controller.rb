@@ -6,12 +6,17 @@ class MatriculasController < ApplicationController
     @matricula.user   = current_user
     @matricula.estado = :reservada
     @matricula.save!
+    
+    preco = @matricula.curso.preco
+    if @matricula.promocao? and @matricula.curso.tem_promocao
+      preco = @matricula.curso.preco_promocional
+    end
 
     payment = PagSeguro::Payment.new('brunogamacatao@gmail.com', '8AE446E9204345D4B571A0C7CFFA9CC1', id: @matricula.id)
     payment.items = [
       PagSeguro::Item.new(id: @matricula.curso.id, 
                           description: @matricula.curso.nome, 
-                          amount: @matricula.curso.preco,  
+                          amount: preco,  
                           quantity: "1")
     ]
     

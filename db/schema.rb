@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916183918) do
+ActiveRecord::Schema.define(:version => 20130918020808) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -67,11 +67,13 @@ ActiveRecord::Schema.define(:version => 20130916183918) do
     t.text     "descricao"
     t.boolean  "inicio_previsto"
     t.date     "proxima_turma"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
-    t.decimal  "preco",           :precision => 8, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.decimal  "preco",             :precision => 8, :scale => 2, :default => 0.0
     t.string   "slug"
     t.text     "ementa"
+    t.boolean  "tem_promocao",                                    :default => false
+    t.decimal  "preco_promocional",                               :default => 0.0
   end
 
   add_index "cursos", ["slug"], :name => "index_cursos_on_slug", :unique => true
