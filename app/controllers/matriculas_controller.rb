@@ -20,7 +20,9 @@ class MatriculasController < ApplicationController
                           quantity: "1")
     ]
     
-    payment.sender   = PagSeguro::Sender.new(name: facebook.name, email: current_user.email)
+    nome = facebook ? facebook.name : @matricula.user.username
+    
+    payment.sender   = PagSeguro::Sender.new(name: nome, email: current_user.email)
     payment.shipping = PagSeguro::Shipping.new(type: PagSeguro::Shipping::UNIDENTIFIED)
     
     redirect_to payment.checkout_payment_url
