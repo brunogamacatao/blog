@@ -37,7 +37,7 @@
           <% end %>
         <% else %>
           <% if curso.inicio_previsto %>
-            <%= link_to(user_omniauth_authorize_path(:facebook), :class => "button round small") do %>
+            <%= link_to(new_user_session_path, :class => "button round small") do %>
               <i class="foundicon-page"></i>&nbsp;Registre-se
             <% end %>
           <% end %>
