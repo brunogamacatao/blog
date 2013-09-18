@@ -1,0 +1,29 @@
+%article
+  %h3= link_to curso.nome, url_for(curso)
+  .row
+    %div{:class => "large-6 columns"}
+      %p= curso.descricao
+    %div{:class => "large-6 columns"}= image_tag curso.imagem_url(:thumb) if curso.imagem? 
+  %p
+    - if user_signed_in?
+      - if curso.matriculado?(current_user) 
+        = link_to(url_for(curso), :class => "button round small success") do
+          %i{:class => "foundicon-address-book"}="&nbsp;Entrar".html_safe
+      - else
+        - if curso.inicio_previsto
+          = form_for(Matricula.new) do |f|
+            = f.hidden_field :curso_id, :value => curso.id
+            = button_tag(type: 'submit', class: "button round small") do
+              %i{:class => "foundicon-cart"}="&nbsp;Matricule-se".html_safe
+            = link_to(detalhe_curso_path(curso), class: "button round small") do 
+              %i{:class => "foundicon-plus"}="&nbsp;Ver Mais".html_safe
+        - else 
+          = link_to(detalhe_curso_path(curso), class: "button round small") do
+            %i{:class => "foundicon-plus"}="&nbsp;Ver Mais".html_safe
+    - else
+      - if curso.inicio_previsto
+        = link_to(new_user_session_path, :class => "button round small") do
+          %i{:class => "foundicon-page"}="&nbsp;Registre-se".html_safe
+      = link_to(detalhe_curso_path(curso), class: "button round small") do
+        %i{:class => "foundicon-plus"}="&nbsp;Ver Mais".html_safe
+%hr

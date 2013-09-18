@@ -24,6 +24,7 @@ group :test do
   gem "guard-rspec"
 end
 
+gem 'haml'
 gem 'jquery-rails'
 gem 'unicorn'
 gem 'capistrano'

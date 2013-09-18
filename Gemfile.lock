@@ -332,6 +332,7 @@ DEPENDENCIES
   fb_graph
   friendly_id
   guard-rspec
+  haml
   jquery-rails
   meta_request
   omniauth-facebook
