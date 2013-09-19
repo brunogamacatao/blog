@@ -1,0 +1,29 @@
+/ Principal
+%div{:class=>"large-9 columns", :role=>"content"}
+  %h3{:class=>"text-right"}= @curso.nome
+  %p= @curso.descricao
+  %hr
+  %h4 Aulas:
+  %p Ainda não há aulas cadastradas
+  %hr
+  %h4 Hangouts:
+  %p Ainda não há hangouts cadastrados
+  %hr
+  %h4 Material de Apoio:
+  %p Ainda não há materiais de apoio cadastrados
+  %hr
+  %h4 Fórum:
+  .row
+    = render :partial => "partials/disqus", :locals => { title: @curso.nome }
+/ Painel lateral
+%aside{:class=>"large-3 columns panel"}
+  %h5 Sessões
+  %ul{:class=>"side-nav"}
+    %li
+      %a{:href=>"#"} Aulas
+    %li
+      %a{:href=>"#"} Hangouts
+    %li
+      %a{:href=>"#"} Material de Apoio
+    %li
+      %a{:href=>"#"} Forum
