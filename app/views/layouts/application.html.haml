@@ -20,6 +20,11 @@
     = csrf_meta_tags
   %body
     = render :partial => "partials/navbar"
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        %div{:class => "alert-box #{name == :notice ? "success" : "alert"}", :"data-alert" => true}
+          = msg
+          %a{:href => '#', :class => "close"} &times;
     .row= yield
     = render :partial => "partials/footer"
     = javascript_include_tag "application"

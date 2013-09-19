@@ -21,4 +21,7 @@ class Curso < ActiveRecord::Base
   def matriculado?(user)
     matriculas.where("user_id = ? AND estado_cd = ?", user.id, Matricula.estados(:confirmada)).exists?
   end
+  
+  scope :abertos,  -> { where(inicio_previsto: true).order("proxima_turma, id") }
+  scope :proximos, -> { where(inicio_previsto: false).order("created_at") }
 end

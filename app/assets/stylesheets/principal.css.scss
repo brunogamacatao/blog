@@ -6,3 +6,15 @@
     }
   }
 }
+
+.curso_item {
+  height: 50px;
+  overflow: hidden;
+  h3 {
+    height: 2em;
+  }
+  img {
+    height: 150px;
+    margin-bottom: 1em;
+  }
+}

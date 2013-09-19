@@ -16,7 +16,10 @@ Blog::Application.routes.draw do
   resources :notificacoes
   
   # general routes
-  resources :cursos
+  resources :cursos do
+    resources :interesses
+  end
+  
   get "principal/sobre", as: :sobre
   get "/detalhes/:id", to: 'principal#detalhe', as: :detalhe_curso
 end
