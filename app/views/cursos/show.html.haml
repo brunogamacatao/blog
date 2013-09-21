@@ -12,7 +12,10 @@
   %hr
   %a{:name=>"hangouts"}
   %h4 Hangouts:
-  %p Ainda não há hangouts cadastrados
+  - if @curso.hangouts.empty?
+    %p Ainda não há hangouts cadastrados
+  - else
+    = render partial: "materiais", locals: {materiais: @curso.hangouts, prefix: "hang", tipo_video: "youtube"}
   %hr
   %a{:name=>"material_apoio"}
   %h4 Material de Apoio:

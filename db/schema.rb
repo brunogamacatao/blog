@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921045251) do
+ActiveRecord::Schema.define(:version => 20130921124110) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130921045251) do
     t.text     "ementa"
     t.boolean  "tem_promocao",                                    :default => false
     t.decimal  "preco_promocional",                               :default => 0.0
+    t.string   "aviso"
   end
 
   add_index "cursos", ["slug"], :name => "index_cursos_on_slug", :unique => true
@@ -184,6 +185,18 @@ ActiveRecord::Schema.define(:version => 20130921045251) do
   add_index "forem_views", ["updated_at"], :name => "index_forem_views_on_updated_at"
   add_index "forem_views", ["user_id"], :name => "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], :name => "index_forem_views_on_topic_id"
+
+  create_table "hangouts", :force => true do |t|
+    t.integer  "curso_id"
+    t.string   "nome"
+    t.string   "url"
+    t.text     "descricao"
+    t.string   "video"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "hangouts", ["curso_id"], :name => "index_hangouts_on_curso_id"
 
   create_table "interesses", :force => true do |t|
     t.integer  "curso_id"

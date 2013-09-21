@@ -12,6 +12,7 @@ class Curso < ActiveRecord::Base
   has_many :matriculas
   has_many :materiais
   has_many :aulas
+  has_many :hangouts
   
   # Geração dos slugs
   def slug_candidates

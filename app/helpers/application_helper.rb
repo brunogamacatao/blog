@@ -11,4 +11,11 @@ module ApplicationHelper
     html
     html.html_safe
   end
+  
+  def youtube(video)
+    html = <<-html
+      <iframe width="420" height="315" src="#{video}" frameborder="0" allowfullscreen></iframe>
+    html
+    .html_safe
+  end
 end
