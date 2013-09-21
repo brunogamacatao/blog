@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921022035) do
+ActiveRecord::Schema.define(:version => 20130921045251) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(:version => 20130921022035) do
     t.string   "storage_mime_type"
     t.string   "storage_size"
   end
+
+  create_table "aulas", :force => true do |t|
+    t.integer  "curso_id"
+    t.string   "nome"
+    t.string   "url"
+    t.text     "descricao"
+    t.string   "video"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "aulas", ["curso_id"], :name => "index_aulas_on_curso_id"
 
   create_table "cursos", :force => true do |t|
     t.string   "nome"
@@ -190,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130921022035) do
     t.text     "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "video"
   end
 
   add_index "materiais", ["curso_id"], :name => "index_materiais_on_curso_id"

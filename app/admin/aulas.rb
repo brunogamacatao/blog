@@ -1,6 +1,6 @@
-ActiveAdmin.register Material do
+ActiveAdmin.register Aula do
   form do |f|
-    f.inputs "Material" do
+    f.inputs "Aula" do
       f.input :curso
       f.input :nome
       f.input :url

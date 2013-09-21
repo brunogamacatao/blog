@@ -5,7 +5,10 @@
   %hr
   %a{:name=>"aulas"}
   %h4 Aulas:
-  %p Ainda não há aulas cadastradas
+  - if @curso.aulas.empty?
+    %p Ainda não há aulas cadastradas
+  - else
+    = render partial: "materiais", locals: {materiais: @curso.aulas, prefix: "aula"}
   %hr
   %a{:name=>"hangouts"}
   %h4 Hangouts:
@@ -16,27 +19,7 @@
   - if @curso.materiais.empty?
     %p Ainda não há materiais de apoio cadastrados
   - else
-    %table{:style=>"width:100%"}
-      %thead
-        %th NOME
-        %th DATA
-        %th AÇÕES
-      - @curso.materiais.each do |material|
-        %tr
-          %td
-            %i{:class => "foundicon-paper-clip"}
-            = material.nome
-          %td= material.created_at.strftime("%d/%m/%Y")
-          %td
-            %a{:href => material.url, :class => "button small"}
-              %i{:class => "foundicon-folder"} &nbsp; Download
-            %a{:href => '#', :class => "button small success", :"data-reveal-id"=>"modal_#{material.id}"}
-              %i{:class => "foundicon-search"} &nbsp; Detalhes
-    - @curso.materiais.each do |material|
-      %div{:id=>"modal_#{material.id}", :class=>"reveal-modal"}
-        %h2 Detalhes
-        %p=material.descricao.html_safe
-        %a{:class=>"close-reveal-modal"} &#215;
+    = render partial: "materiais", locals: {materiais: @curso.materiais, prefix: "mat"}
   %hr
   %a{:name=>"forum"}
   %h4 
