@@ -8,7 +8,9 @@ class Curso < ActiveRecord::Base
   attr_accessible :descricao, :imagem, :inicio_previsto, :nome, :proxima_turma
   attr_accessible :preco, :ementa, :tem_promocao, :preco_promocional
   
+  # Relacionamentos
   has_many :matriculas
+  has_many :materiais
   
   # Geração dos slugs
   def slug_candidates
@@ -20,6 +22,10 @@ class Curso < ActiveRecord::Base
   
   def matriculado?(user)
     matriculas.where("user_id = ? AND estado_cd = ?", user.id, Matricula.estados(:confirmada)).exists?
+  end
+  
+  def to_s
+    nome
   end
   
   scope :abertos,  -> { where(inicio_previsto: true).order("proxima_turma, id") }
