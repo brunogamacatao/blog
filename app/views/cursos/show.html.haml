@@ -1,32 +1,37 @@
 / Principal
 %div{:class=>"large-9 columns", :role=>"content"}
   %h3{:class=>"text-right"}= @curso.nome
+  - unless @curso.aviso.blank?
+    %hr
+    %div{:class => "alert-box alert", :"data-alert" => true}
+      = @curso.aviso
+      %a{:href => '#', :class => "close"} &times;
   %p= @curso.descricao
   %hr
   %a{:name=>"aulas"}
-  %h4 Aulas:
+  %h4.faixa Aulas:
   - if @curso.aulas.empty?
     %p Ainda não há aulas cadastradas
   - else
     = render partial: "materiais", locals: {materiais: @curso.aulas, prefix: "aula"}
   %hr
   %a{:name=>"hangouts"}
-  %h4 Hangouts:
+  %h4.faixa Hangouts:
   - if @curso.hangouts.empty?
     %p Ainda não há hangouts cadastrados
   - else
     = render partial: "materiais", locals: {materiais: @curso.hangouts, prefix: "hang", tipo_video: "youtube"}
   %hr
   %a{:name=>"material_apoio"}
-  %h4 Material de Apoio:
+  %h4.faixa Material de Apoio:
   - if @curso.materiais.empty?
     %p Ainda não há materiais de apoio cadastrados
   - else
     = render partial: "materiais", locals: {materiais: @curso.materiais, prefix: "mat"}
   %hr
   %a{:name=>"forum"}
-  %h4 
+  %h4.faixa
     Fórum:
-    = render :partial => "partials/disqus", :locals => { title: @curso.nome }
+  = render :partial => "partials/disqus", :locals => { title: @curso.nome }
 / Painel lateral
 = render :partial => "sidebar"

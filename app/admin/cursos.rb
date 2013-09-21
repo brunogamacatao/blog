@@ -2,6 +2,7 @@ ActiveAdmin.register Curso do
   form(:html => { :multipart => true }) do |f|
     f.inputs "Curso" do
       f.input :nome
+      f.input :aviso
       f.input :imagem, :as => :file
       f.input :preco
       f.input :tem_promocao

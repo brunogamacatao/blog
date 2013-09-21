@@ -6,7 +6,7 @@ class Curso < ActiveRecord::Base
   mount_uploader :imagem, ImagemUploader
   
   attr_accessible :descricao, :imagem, :inicio_previsto, :nome, :proxima_turma
-  attr_accessible :preco, :ementa, :tem_promocao, :preco_promocional
+  attr_accessible :preco, :ementa, :tem_promocao, :preco_promocional, :aviso
   
   # Relacionamentos
   has_many :matriculas
