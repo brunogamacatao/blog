@@ -2,7 +2,7 @@
   %h3= link_to curso.nome, detalhe_curso_path(curso)
   %p{:class=>"text-center"}
     = link_to(detalhe_curso_path(curso)) do
-      = image_tag curso.imagem_url(:thumb) if curso.imagem? 
+      = image_tag curso.imagem_url(:main_page_thumb) if curso.imagem? 
   %p{:class=>"text-center"}
     - if user_signed_in?
       - if curso.matriculado?(current_user) 
