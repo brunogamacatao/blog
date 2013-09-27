@@ -1,6 +1,11 @@
 / Principal
 %div{:class=>"large-9 columns", :role=>"content"}
-  %h3{:class=>"text-right"}= @curso.nome
+  .row
+    %div{:class=>"large-2 columns"}
+      .panel
+        = image_tag @curso.imagem_url(:mini_thumb) if @curso.imagem?
+    %div{:class=>"large-10 columns"}
+      %h2= @curso.nome
   - unless @curso.aviso.blank?
     %hr
     %div{:class => "alert-box alert", :"data-alert" => true}
