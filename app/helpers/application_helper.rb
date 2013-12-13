@@ -5,9 +5,9 @@ module ApplicationHelper
   
   def vimeo(video)
     html = <<-html
-      <iframe src="#{video}" width="500" height="367" frameborder="0" 
+      <iframe src="#{video}" width="500" height="281" frameborder="0" 
         webkitallowfullscreen mozallowfullscreen allowfullscreen>
-      </iframe> 
+      </iframe>
     html
     html.html_safe
   end
