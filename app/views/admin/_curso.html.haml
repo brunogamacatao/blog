@@ -22,10 +22,11 @@
       %th E-mail
       %th Estado
     - @curso.matriculas.each do |matricula|
-      %tr
-        %td= matricula.user.username
-        %td= matricula.user.email
-        %td= matricula.estado.to_s.capitalize
+      - if matricula.user
+        %tr
+          %td= matricula.user.username
+          %td= matricula.user.email
+          %td= matricula.estado.to_s.capitalize
 
 #mensagem_dialog{title: "Enviar Mensagem"}
   = semantic_form_for([:admin, @curso], url: curso_enviar_mensagem_path(@curso), :html => {:method => :post}) do |f|
