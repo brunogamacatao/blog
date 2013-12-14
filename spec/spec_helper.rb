@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rails'
 require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -10,18 +11,7 @@ require 'capybara/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  config.include FactoryGirl::Syntax::Methods
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -33,4 +23,17 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  config.include Capybara::DSL
+  
+  Capybara.default_driver = :rack_test
+  Capybara.javascript_driver = :selenium
+  # You can also change the driver temporarily (typically in the Before/setup and After/teardown blocks):
+  # Use: Capybara.current_driver = :webkit # temporarily select different driver
+  # or use :js => true for specific test and it should use selenium by default.
+  # Or:
+  # Also see https://github.com/jnicklas/capybara#drivers
+  Capybara.default_wait_time = 5
+  Capybara.run_server = true #Whether start server when testing
+  Capybara.default_selector = :css #default selector , you can change to :css
+  OmniAuth.config.test_mode = true  
 end

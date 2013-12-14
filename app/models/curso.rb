@@ -1,6 +1,9 @@
 class Curso < ActiveRecord::Base
   extend FriendlyId
   
+  # Atributos transientes
+  attr_accessor :mensagem
+  
   # Atributos especiais
   friendly_id :nome, use: :slugged
   mount_uploader :imagem, ImagemUploader

@@ -18,6 +18,7 @@ Blog::Application.routes.draw do
   # general routes
   resources :cursos do
     resources :interesses
+    post "/enviar_mensagem", to: "admin::cursos#enviar_mensagem"
   end
   
   get "principal/sobre", as: :sobre

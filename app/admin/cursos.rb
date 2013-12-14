@@ -4,7 +4,22 @@ ActiveAdmin.register Curso do
       curso.imagem.recreate_versions!
       curso.save!
     end
-    redirect_to :action => :index, :notice => "Thumbnails gerados com sucesso !"
+  end
+  
+  controller do
+    def enviar_mensagem
+      @curso = Curso.find(params[:curso_id])
+      recipientes = []
+      
+      @curso.matriculas.each do |matricula|
+        if matricula.estado == Matricula.estados(:confirmada)
+          CursoMailer.mensagem(matricula, params[:curso][:mensagem]).deliver
+          recipientes << matricula.user.username
+        end
+      end
+      
+      render :text => "Mensagens enviadas para: #{recipientes.join(', ')}"
+    end
   end
 
   index do   
@@ -17,8 +32,16 @@ ActiveAdmin.register Curso do
     default_actions
   end
   
+  show do
+    render "/admin/curso"
+  end
+  
   action_item :only => :index do
     link_to 'Gerar Thumbnails', gerar_thumbnails_admin_cursos_path
+  end
+  
+  action_item :only => :show do
+    link_to 'Enviar Mensagem', '#', id: 'link_enviar_msg'
   end
 
   form(:html => { :multipart => true }) do |f|
