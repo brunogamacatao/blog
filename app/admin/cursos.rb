@@ -12,8 +12,10 @@ ActiveAdmin.register Curso do
       recipientes = []
       
       @curso.matriculas.each do |matricula|
-        CursoMailer.mensagem(matricula, params[:curso][:mensagem]).deliver
-        recipientes << matricula.user.username
+        if matricula.user
+          CursoMailer.mensagem(matricula, params[:curso][:mensagem]).deliver
+          recipientes << matricula.user.username
+        end
       end
       
       render :text => "Mensagens enviadas para: #{recipientes.join(', ')}"
